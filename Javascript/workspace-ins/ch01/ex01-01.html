@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+    window.onload = function(){
+      console.log('Hello Javascript - 5');
+      var btn = document.querySelector('button');
+      btn.addEventListener('click', event => {
+        console.log('버튼 클릭', event.clientX, event.clientY);
+      });
+    };    
+  </script>
+  <script src="ex01-01.js"></script>
+</head>
+<body>
+  <h1>Hello Javascript - 3</h1>
+  <button>클릭</button>
+
+  <script type="text/javascript">
+    console.log('Hello Javascript - 4');
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', event => {
+      console.log('버튼 클릭', event.clientX, event.clientY);
+    });
+  </script>
+</body>
+</html>

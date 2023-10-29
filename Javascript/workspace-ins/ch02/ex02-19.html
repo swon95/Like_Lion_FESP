@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+    window.onload = function(){
+      // TODO: closure 단원.
+      console.log('1. load 이벤트 발생.');
+      var btn = document.querySelector('button');
+      
+      btn.addEventListener('click', () => {
+        console.log('3. click 이벤트 발생.');
+        var msg = '5. 버튼 누른 후 3초 지남.';
+        setTimeout(function() {
+          console.log(msg, btn.innerHTML);
+        }, 1000*3);
+        console.log('4. click 이벤트 처리 완료.');
+      });
+
+      console.log('2. load 이벤트 처리 완료.');
+    };
+
+    function timer(){
+      console.log(msg);
+    }
+  </script>
+</head>
+<body>
+  <h1>익명/콜백 함수 사용 예제</h1>
+  <input type="text">
+  <button>전송</button>
+</body>
+</html>
