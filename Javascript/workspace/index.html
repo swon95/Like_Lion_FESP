@@ -6,6 +6,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.js"></script>
+  <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script>
   <script src="js/mylib.js"></script>
   <script>
     $(function(){
@@ -51,7 +52,7 @@
       <h1 class="example-title">프론트엔드 플러스 Javascript 실습</h1>
     </header>
     <div class="main-contents">
-      <section class="chapter chapter-open">
+      <section class="chapter">
         <div class="chapter-title">
         	<h3 tabindex="0">1강: 자바스크립트 데이터 타입</h3>
         	<button>예제목록 펼치기</button>
@@ -111,6 +112,59 @@
           </ul>
         </section>
       </section>
+      <section class="chapter chapter-open">
+				<div class="chapter-title">
+					<h3 tabindex="0">2강: 자바스크립트 함수</h3>
+					<button>예제목록 펼치기</button>
+				</div>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.1 일급 객체</h4>
+          <ul>
+            <li><a href="ch02/ex02-01.js">02-01 변수나 프로퍼티에 함수값을 할당</a></li>
+            <li><a href="ch02/ex02-02.js">02-02 함수를 다른 함수의 인자로 전달</a></li>
+            <li><a href="ch02/ex02-03.js">02-03 함수를 다른 함수의 리턴값으로 활용</a></li>
+            <li><a href="ch02/ex02-04.js">02-04 함수도 객체처럼 프로퍼티를 가질 수 있다.</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.2 함수 생성</h4>
+          <ul>            
+            <li><a href="ch02/ex02-05.js">02-05 선언문</a></li>
+            <li><a href="ch02/ex02-06.js">02-06 표현식 - 익명함수</a></li>
+            <li><a href="ch02/ex02-07.js">02-07 표현식 - 기명함수</a></li>
+            <li><a href="ch02/ex02-08.js">02-08 표현식 - 기명함수 사용(팩토리얼 함수)</a></li>
+            <li><a href="ch02/ex02-09.js">02-09 Function 생성자 함수</a></li>
+            <li><a href="ch02/ex02-10.js">02-10 arrow function</a></li>
+            <li><a href="ch02/ex02-11.js">02-11 선언문 방식과 함수 호이스팅</a></li>
+            <li><a href="ch02/ex02-12.js">02-12 표현식 방식과 함수 호이스팅</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.3 함수 호출과 this</h4>
+          <ul>
+            <li><a href="ch02/ex02-13.js">02-13 매개변수와 인자수</a></li>
+            <li><a href="ch02/ex02-14.js">02-14 메서드 호출시 this 바인딩</a></li>
+            <li><a href="ch02/ex02-15.js">02-15 함수 내부의 this 바인딩 문제</a></li>
+            <li><a href="ch02/ex02-15-01.js">02-15-01 함수 내부의 this 바인딩 문제 해결</a></li>
+            <li><a href="ch02/ex02-15-02.js">02-15-02 함수 내부의 this 바인딩 문제 해결 (call)</a></li>
+            <li><a href="ch02/ex02-15-03.js">02-15-03 함수 내부의 this 바인딩 문제 해결 (=>)</a></li>
+            <li><a href="ch02/ex02-15-04.js">02-15-04 함수 내부의 this 바인딩 문제 해결 (bind)</a></li>
+            <li><a href="ch02/ex02-16.js">02-16 가변 인자 처리</a></li>
+            <li><a href="ch02/ex02-17.js">02-17 생성자 함수</a></li>
+            <li><a href="ch02/ex02-18.js">02-18 생성자 함수 활용</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.4 함수 패턴</h4>
+          <ul>
+            <li><a href="ch02/ex02-19.html">02-19 익명함수와 콜백함수</a></li>
+            <li><a href="ch02/ex02-20.js">02-20 고차 함수 - 배열 메소드 없이 작업</a></li>
+            <li><a href="ch02/ex02-20-01.js">02-20-01 고차 함수 - 배열 메소드 사용</a></li>
+            <li><a href="ch02/ex02-21.js">02-21 메모이제이션 - 소수 판별</a></li>
+          </ul>
+        </section>
+      </section>
+    
     </div>
     <footer class="footer">
       <p>Copyrightⓒ Javascript. All rights reserved.</p>
