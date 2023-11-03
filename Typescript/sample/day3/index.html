@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>FESP - TypeScript 실습</title>  
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/jquery@3.7.1/dist/jquery.js"></script>
+  <script>
+    $(function(){
+      $('.chapter-title').click(function() {
+        if ($(this).parent().toggleClass('chapter-open').hasClass('chapter-open')) {
+          $(this).children('button').text('예제목록 접기');
+        }else{
+          $(this).children('button').text('예제목록 펼치기');
+        }
+      });
+    });       
+
+    $(function() {
+      $('.paragraph > ul a').click(function(e) {
+        $('.paragraph > ul a').removeClass('clicked');
+        $(this).addClass('clicked');
+        var url = $(this).attr('href');
+        var extName = url.split('.')[1];
+        if (extName == 'js') {
+          e.preventDefault();
+          console.clear();
+          var title = $(this).text();
+          console.log('<<< ' + title + ' 예제 실행 결과(' + url + ') >>>');
+          $.get(url, function(data) {
+            if (data.trim) {
+              data = data.trim();
+            }
+            console.log(data);
+            console.log('\n\n');
+            $('body').next().remove();
+            var result = '<script>' + data + '<\/script>';
+              $('html').append(result);
+          }, 'text');
+        }
+      });
+    });
+
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="example-title">Front-End School Plus - TypeScript 실습</h1>
+    </header>
+    <div class="main-contents">
+      <section class="chapter">
+        <div class="chapter-title">
+        	<h3 tabindex="0">1강: 타입스크립트 - 타입 정의</h3>
+        	<button>예제목록 펼치기</button>
+        </div>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.1 개발 환경 구축</h4>
+          <ul>
+            <li><a href="dist/ch01/ex01-01.js">01-01 개발 환경 확인</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.2 기본 타입</h4>
+          <ul>
+            <li><a href="dist/ch01/ex01-02.js">01-02 기본 타입</a></li>
+            <li><a href="dist/ch01/ex01-03.js">01-03 함수에 타입 지정</a></li>
+            <li><a href="dist/ch01/ex01-04.js">01-04 선택적 파라미터(optional parameter)</a></li>
+            <li><a href="dist/ch01/ex01-05.js">01-05 유니언 타입(union type)</a></li>
+            <li><a href="dist/ch01/ex01-05-01.js">01-05-01 유니언 타입과 타입 가드</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.3 타입 별칭</h4>
+          <ul>
+            <li><a href="dist/ch01/ex01-06.js">01-06 유니언 타입에 타입 별칭 지정</a></li>
+            <li><a href="dist/ch01/ex01-07.js">01-07 타입 별칭으로 객체의 타입 선언</a></li>
+            <li><a href="dist/ch01/ex01-08.js">01-08 인터섹션 타입(intersection type)</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.4 인터페이스</h4>
+          <ul>
+            <li><a href="dist/ch01/ex01-09.js">01-09 인터페이스로 객체의 타입 선언</a></li>
+            <li><a href="dist/ch01/ex01-10.js">01-10 인터페이스 사용 - 변수, 함수의 매개변수, 리턴타입</a></li>
+            <li><a href="dist/ch01/ex01-11.js">01-11 인터페이스 사용 - 클래스의 타입 지정</a></li>
+            <li><a href="dist/ch01/ex01-12.js">01-12 인터페이스 정의 - 객체의 속성과 메서드, 익명 함수, 선택적 속성, 읽기 전용 속성</a></li>
+            <li><a href="dist/ch01/ex01-13.js">01-13 인덱스 시그니처</a></li>
+            <li><a href="dist/ch01/ex01-13-01.js">01-13-01 인덱스 시그니처 - 배열</a></li>
+            <li><a href="dist/ch01/ex01-13-02.js">01-13-02 인덱스 시그니처 - 복합 객체</a></li>
+            <li><a href="dist/ch01/ex01-14.js">01-14 인터페이스 상속</a></li>
+            <li><a href="dist/ch01/ex01-15.js">01-15 인터페이스 상속 - 계층 구조</a></li>
+            <li><a href="dist/ch01/ex01-16.js">01-16 인터페이스 다중 상속</a></li>
+            <li><a href="dist/ch01/ex01-17.js">01-17 인터페이스 선언 병합</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">1.5 Enum</h4>
+          <ul>
+            <li><a href="dist/ch01/ex01-18.js">01-18 상수가 필요한 경우</a></li>
+            <li><a href="dist/ch01/ex01-19.js">01-19 상수 사용</a></li>
+            <li><a href="dist/ch01/ex01-19-01.js">01-19-01 상수를 그룹화</a></li>
+            <li><a href="dist/ch01/ex01-20.js">01-20 숫자형 Enum 사용</a></li>
+            <li><a href="dist/ch01/ex01-21.js">01-21 문자형 Enum 사용</a></li>
+            <li><a href="dist/ch01/ex01-22.js">01-22 const Enum</a></li>
+          </ul>
+        </section>
+      </section>
+      <section class="chapter">
+        <div class="chapter-title">
+        	<h3 tabindex="0">2강: 타입스크립트 - 클래스, 모듈, 제네릭</h3>
+        	<button>예제목록 펼치기</button>
+        </div>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.1 클래스</h4>
+          <ul>
+            <li><a href="ch02/ex02-01.js">02-01 자바스크립트 클래스 정의</a></li>
+            <li><a href="dist/ch02/ex02-02.js">02-02 타입스크립트의 클래스</a></li>
+            <li><a href="dist/ch02/ex02-03.js">02-03 private 접근 지정자</a></li>
+            <li><a href="ch02/ex02-04.js">02-04 Private class fields</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.2 모듈</h4>
+          <ul>
+            <li><a href="ch02/ex02-05/module.html">02-05 자바스크립트 모듈</a></li>
+            <li><a href="ch02/ex02-06/module.html">02-06 타입스크립트 모듈</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">2.3 제네릭</h4>
+          <ul>
+            <li><a href="dist/ch02/ex02-07.js">02-07 일반 함수</a></li>
+            <li><a href="dist/ch02/ex02-08.js">02-08 제네릭 함수</a></li>
+            <li><a href="dist/ch02/ex02-09.js">02-09 일반 인터페이스</a></li>
+            <li><a href="dist/ch02/ex02-10.js">02-10 제네릭 인터페이스</a></li>
+            <li><a href="dist/ch02/ex02-11.js">02-11 일반 클래스</a></li>
+            <li><a href="dist/ch02/ex02-12.js">02-12 제네릭 클래스</a></li>
+            <li><a href="dist/ch02/ex02-13.js">02-13 제네릭 타입 제약</a></li>
+          </ul>
+        </section>
+      </section>
+      <section class="chapter chapter-open">
+        <div class="chapter-title">
+        	<h3 tabindex="0">3강: 타입스크립트 - 타입 관련 문법</h3>
+        	<button>예제목록 펼치기</button>
+        </div>
+        <section class="paragraph">
+          <h4 class="paragraph-title">3.1 유틸리티 타입과 Mapped 타입</h4>
+          <ul>
+            <li><a href="dist/ch03/ex03-01.js">03-01 Readonly 유틸리티 타입</a></li>
+            <li><a href="dist/ch03/ex03-02.js">03-02 Required 유틸리티 타입</a></li>
+            <li><a href="dist/ch03/ex03-03.js">03-03 Partial 유틸리티 타입</a></li>
+            <li><a href="dist/ch03/ex03-04.js">03-04 Pick 유틸리티 타입</a></li>
+            <li><a href="dist/ch03/ex03-05.js">03-05 Omit 유틸리티 타입</a></li>
+            <li><a href="dist/ch03/ex03-06.js">03-06 유니언 타입을 기반으로 객체 타입 생성(in)</a></li>
+            <li><a href="dist/ch03/ex03-07.js">03-07 객체 타입을 기반으로 객체 타입 생성(in keyof)</a></li>
+            <li><a href="dist/ch03/ex03-08.js">03-08 매핑 수정자</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">3.2 타입 추론</h4>
+          <ul>
+            <li><a href="dist/ch03/ex03-09.js">03-09 변수의 타입 추론</a></li>
+            <li><a href="dist/ch03/ex03-10.js">03-10 함수의 타입 추론</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">3.3 타입 단언</h4>
+          <ul>
+            <li><a href="dist/ch03/ex03-11.js">03-11 타입 단언</a></li>
+            <li><a href="ch03/ex03-12.js">03-12 타입 단언이 필요한 JS 코드</a></li>
+            <li><a href="dist/ch03/ex03-13.js">03-13 타입 단언으로 리팩토링</a></li>
+            <li><a href="dist/ch03/ex03-14.js">03-14 함수가 null을 리턴할 수 있을 경우</a></li>
+          </ul>
+        </section>
+        <section class="paragraph">
+          <h4 class="paragraph-title">3.4 타입 가드</h4>
+          <ul>
+            <li><a href="dist/ch03/ex03-15.js">03-15 typeof 연산자</a></li>
+            <li><a href="dist/ch03/ex03-16.js">03-16 instanceof 연산자</a></li>
+            <li><a href="dist/ch03/ex03-17.js">03-17 in 연산자</a></li>
+            <li><a href="dist/ch03/ex03-18.js">03-18 속성 값으로 체크</a></li>
+            <li><a href="dist/ch03/ex03-19.js">03-19 타입 가드 함수 작성</a></li>
+          </ul>
+        </section>
+      </section>
+    </div>
+    <footer class="footer">
+      <p>Copyrightⓒ Typescript. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
