@@ -1,13 +1,8 @@
+// 목록 페이지
 import Footer from "../../layout/Footer";
 import { linkTo } from "../../Router";
-import axios from "axios";
+import defaultInstance from '../../types/baseURL';
 
-const defaultInstance = axios.create({
-    baseURL: "http://localhost:33088/api",
-    headers: {
-        "Content-Type": "application/json",
-    },
-});
 
 const getData = async () => {
     try {
@@ -18,8 +13,10 @@ const getData = async () => {
     }
 };
 
+// All, Todo, Done 네비게이터
 let menu = "Todo";
-const displayCategory = (parent) => {
+
+const displayCategory = (parent: HTMLElement) => {
     const ul = document.createElement("ul");
     ul.classList.add("category-list");
 
@@ -36,17 +33,18 @@ const displayCategory = (parent) => {
     liDone.textContent = "✅ Done";
 
     [liAll, liTodo, liDone].forEach((li) => {
-        if (li.textContent.includes(menu)) {
+        if (li.textContent?.includes(menu)) {
             li.classList.add("active");
         }
 
-        li.addEventListener("click", (e) => {
-            menu = e.target.textContent;
+        li.addEventListener("click", (event: Event) => {
+            const target = event.target as HTMLElement
+            menu = target.textContent!;
 
             [liAll, liTodo, liDone].forEach((i) =>
                 i.classList.remove("active")
             );
-            e.target.classList.add("active");
+            target.classList.add("active");
 
             displayList();
         });
@@ -56,11 +54,13 @@ const displayCategory = (parent) => {
     parent.append(ul);
 };
 
-const displayList = async (parent) => {
+// 추가한 목록 리스트
+const displayList = async () => {
     const frag = document.createDocumentFragment();
-    const dataAll = await getData();
+    const dataAll: TodoListMain[] = await getData();
 
-    let data;
+    let data: TodoListMain[] | undefined;
+    
     if (menu.includes("Todo")) {
         data = dataAll.filter((i) => !i.done);
     } else if (menu.includes("Done")) {
@@ -69,7 +69,7 @@ const displayList = async (parent) => {
         data = dataAll;
     }
 
-    data?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)).forEach(
+    data?.sort((a, b) => + new Date(b.updatedAt) - + new Date(a.updatedAt)).forEach(
         (item) => {
             const li = document.createElement("li");
             const todoInfoLink = document.createElement("a");
@@ -81,7 +81,7 @@ const displayList = async (parent) => {
             const checkbox = document.createElement("input");
             checkbox.classList.add("list-item__check");
             checkbox.setAttribute("type", "checkbox");
-            checkbox.setAttribute("id", item._id);
+            checkbox.setAttribute("id", String(item._id));
 
             checkbox.addEventListener("change", async function () {
                 await defaultInstance.patch(`/todolist/${item._id}`, {
@@ -94,10 +94,13 @@ const displayList = async (parent) => {
             label.classList.add("list-item__title");
             label.textContent = item.title;
 
-            todoInfoLink.addEventListener("click", function (event) {
-                if (event.target.type !== "checkbox") {
+            todoInfoLink.addEventListener("click", function (event: Event) {
+                
+                const target = event.target as HTMLInputElement
+                
+                if (target.type !== "checkbox") {
                     event.preventDefault();
-                    linkTo(todoInfoLink.getAttribute("href"));
+                    linkTo(todoInfoLink.getAttribute("href")!);
                 }
             });
 
@@ -118,14 +121,13 @@ const displayList = async (parent) => {
         }
     );
 
-    if (parent) parent.appendChild(frag);
-    else {
-        const listContainer = document.querySelector(".list-container");
-        listContainer.textContent = "";
-        listContainer.appendChild(frag);
-    }
+    const listContainer = document.querySelector(".list-container")
+    // 타입 단언으로 null 값 알려주기 Nullable Types(nullable types)
+    listContainer!.textContent = ""
+    listContainer!.appendChild(frag)
 };
 
+// Root
 const TodoList = async function () {
     const page = document.createElement("div");
     page.setAttribute("id", "page");
@@ -138,7 +140,7 @@ const TodoList = async function () {
 
         const listContainer = document.createElement("ul");
         listContainer.setAttribute("class", "list-container");
-        displayList(listContainer);
+        displayList();
 
         content.appendChild(listContainer);
 
