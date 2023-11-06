@@ -1,8 +1,22 @@
-// 할일 등록
+// 상세 페이지
 import "./info.css";
 import Footer from "../../layout/Footer";
 import axios from "axios";
+import defaultInstances from '../../types/baseURL';
 
+
+const getData = async function () {
+    try {
+      const params = new URLSearchParams(location.search);
+      const _id = params.get('_id');
+      const getUrl = `http://localhost:33088/api/todolist/${_id}`;
+      const { data } = await axios.get<TodoResponse>(getUrl);
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  
 const TodoInfo = async function () {
     const params = new URLSearchParams(location.search);
     const _id = params.get("_id");
@@ -11,12 +25,10 @@ const TodoInfo = async function () {
     page.setAttribute("id", "page");
     page.classList.add("page-01");
 
-    const { data } = await axios({
-        method: "get",
-        url: `http://localhost:33088/api/todolist/${_id}`,
-    });
+    const data = await getData()
 
-    const detailInfo = data.item;
+    // ! == data 가 있을 수도 있고 없을 수도 있고 
+    const detailInfo = data!.item;
     const arrowBtn = document.createElement("button");
     const content = document.createElement("article");
     const time = document.createElement("p");
@@ -65,7 +77,10 @@ const TodoInfo = async function () {
     deleteBtn.addEventListener("click", async function () {
         const confirmDelete = confirm("삭제하시겠습니까?");
         if (confirmDelete) {
-            await axios.delete(`http://localhost:33088/api/todolist/${_id}`);
+            await defaultInstances.patch(`/todolist/${_id}`, {
+                title: headingInput.value,
+                content: paragraphText.value,
+            })
             alert("삭제되었습니다.");
             location.href = "/";
         }
@@ -89,7 +104,7 @@ const TodoInfo = async function () {
     }
 
     modifyBtn.addEventListener("click", async function () {
-        await axios.patch(`http://localhost:33088/api/todolist/${_id}`, {
+        await defaultInstances.patch(`/todolist/${_id}`, {
             title: headingInput.value,
             content: paragraphText.value,
         });
@@ -97,19 +112,10 @@ const TodoInfo = async function () {
         location.href = "/";
     });
 
-    // //  수아 추가
-
-    const defaultInstance = axios.create({
-        baseURL: "http://localhost:33088/api",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
     input.addEventListener("change", async function () {
         const isChecked = this.checked;
         console.log(isChecked);
-        await defaultInstance.patch(`/todolist/${_id}`, {
+        await defaultInstances.patch(`/todolist/${_id}`, {
             done: isChecked,
         });
     });
@@ -125,8 +131,8 @@ const TodoInfo = async function () {
         input.setAttribute("checked", "true");
     }
 
-    const test = document.querySelectorAll("p");
-    console.log(test);
+    // const test = document.querySelectorAll("p");
+    // console.log(test);
 
     content.appendChild(topDiv);
     content.appendChild(toggle);

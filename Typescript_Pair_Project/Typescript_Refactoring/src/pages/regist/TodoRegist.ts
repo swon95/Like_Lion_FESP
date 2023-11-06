@@ -1,10 +1,11 @@
-// 할일 등록
+// 할 일 등록
 import "./register.css";
 import Footer from "../../layout/Footer";
 import axios from "axios";
+import defaultInstance from '../../types/baseURL';
 
 const TodoRegist = function () {
-    document.querySelector("body").setAttribute("class", "registerBody");
+    document.querySelector("body")!.setAttribute("class", "registerBody");
 
     const page = document.createElement("section");
     page.setAttribute("id", "page");
@@ -62,8 +63,8 @@ const TodoRegist = function () {
             alert("할 일과 내용을 입력해주세요");
             return;
         }
-        await axios
-            .post("http://localhost:33088/api/todolist", {
+        await defaultInstance
+            .post(`/todolist`, {
                 title: titleInput.value,
                 content: contentInput.value,
             })
