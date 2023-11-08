@@ -34,12 +34,9 @@ export default App;
 // <Element ref={refObject}>
 // 3. 컴포넌트의 자식 컴포넌트에게 접근해야하는 경우(fowardRef)
 // 자식 컴포넌트에 forwardRef 로 감싸고, ref 속성으로 컴포넌트에게 전달하여 사용한다.
-<<<<<<< HEAD
 
 // 일반적으로 fowardRef() 함수는
 // HTML 엘리먼트 대신에 사용되는 최말단 컴포넌트(ex. <Input />, <Button />)를 대상으로 주로 사용되며,
 // 그 보다 상위 컴포넌트에서는 forwardRef() 함수를 사용하는 것이 권장되지 않는다.
 
 // https://www.daleseo.com/react-forward-ref/
-=======
->>>>>>> 3ce6f42c6ef4af1f6f4959c3abe28f751ed06f5d
