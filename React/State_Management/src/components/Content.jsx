@@ -1,6 +1,7 @@
-import React from "react";
+import useStore from "../context/store";
 
-export default function Content({ isDark }) {
+export default function Content() {
+    const { isDark } = useStore();
     return (
         <div className={`content ${isDark ? "dark" : "white"}`}>
             <p>
