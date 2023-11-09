@@ -1,6 +1,8 @@
-import React from "react";
+import { useAtom } from "jotai";
+import { isDarkAtom } from "../global/atoms";
 
-export default function Content({ isDark }) {
+export default function Content() {
+    const [isDark] = useAtom(isDarkAtom);
     return (
         <div className={`content ${isDark ? "dark" : "white"}`}>
             <p>
