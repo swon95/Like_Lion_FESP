@@ -1,6 +1,8 @@
-import React from "react";
+import { useRecoilValue } from "recoil";
+import { globalState } from "../global/globalState";
 
-export default function Content({ isDark }) {
+export default function Content() {
+    const isDark = useRecoilValue(globalState);
     return (
         <div className={`content ${isDark ? "dark" : "white"}`}>
             <p>
