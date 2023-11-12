@@ -1,11 +1,6 @@
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+{"compilerOptions": {
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,9 +13,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-  ]
-}
+    "jsx": "react-jsx",
+    "baseUrl": ".", // 기본 경로를 프로젝트 최상단으로 설정
+    "paths": {
+     "page/*": ["/src/pages/*"],
+     "layout/*": ["/src/layout/*"]
+    }
+   },
+   "include": ["src"]
+  }
