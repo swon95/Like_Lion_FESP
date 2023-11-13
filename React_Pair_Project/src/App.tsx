@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./layout/Footer";
 import { Route, Routes } from "react-router-dom";
 import TodoList from "./page/TodoList";
-import TodoRegist from "./page/TodoRegist";
+import TodoRegist from "./page/Regist/TodoRegist";
 import TodoInfo from "./page/TodoInfo";
 
 function App() {
