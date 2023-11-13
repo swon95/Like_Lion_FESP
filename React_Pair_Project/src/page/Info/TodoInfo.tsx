@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "./../../header/Header";
 import styles from "./TodoInfo.module.css";
 import button from "src/styles/Button.module.css";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 interface TodoItem {
@@ -44,6 +44,22 @@ const TodoInfo = (): JSX.Element => {
             if (response.status === 200) {
                 const todoData: TodoItem = response.data.item;
                 setTodoDetail(todoData);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const onClickDeleteInInfo = async (): Promise<void> => {
+        try {
+            if (window.confirm("정말 삭제 하시겠습니까?")) {
+                const response = await axios.delete<AxiosResponse>(
+                    `${BASE_URL}/api/todolist/${id}`
+                );
+
+                if (response.status === 200) {
+                    navigate("/");
+                }
             }
         } catch (error) {
             console.log(error);
@@ -108,7 +124,8 @@ const TodoInfo = (): JSX.Element => {
 
                 <button
                     className={`${button.defaultButton} 
-        ${button.button}`}
+                    ${button.button}`}
+                    onClick={onClickDeleteInInfo}
                 >
                     삭제
                 </button>

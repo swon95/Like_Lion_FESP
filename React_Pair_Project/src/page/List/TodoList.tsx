@@ -2,7 +2,7 @@ import styles from "./TodoList.module.css";
 import Header from "./../../header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +45,7 @@ const TodoList = (): JSX.Element => {
 
             const updateTodoDone = !todo?.done;
 
-            const response = await axios.patch(
+            const response = await axios.patch<AxiosResponse>(
                 `${BASE_URL}/api/todoList/${todoId}`,
                 {
                     done: updateTodoDone,
