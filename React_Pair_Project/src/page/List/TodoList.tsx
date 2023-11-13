@@ -20,7 +20,7 @@ const TodoList = (): JSX.Element => {
     const [todoList, setTodoList] = useState<TodoItem[]>([]);
     const navigate = useNavigate();
 
-    const getTodoList = async () => {
+    const getTodoList = async (): Promise<void> => {
         try {
             const response = await axios.get<TodoListResponse>(
                 `${BASE_URL}/api/todolist`
@@ -39,11 +39,13 @@ const TodoList = (): JSX.Element => {
 
     const onChangeCheckBox = async (todoId: number): Promise<void> => {
         try {
-            const todo: TodoItem | undefined = todoList.find((todo) => {
-                return todo._id === todoId;
-            });
+            const todo: TodoItem | undefined = todoList.find(
+                (todo: TodoItem) => {
+                    return todo._id === todoId;
+                }
+            );
 
-            const updateTodoDone = !todo?.done;
+            const updateTodoDone: boolean = !todo?.done;
 
             const response = await axios.patch<AxiosResponse>(
                 `${BASE_URL}/api/todoList/${todoId}`,
@@ -62,11 +64,8 @@ const TodoList = (): JSX.Element => {
 
     const onClickDeleteTodo = async (todoId: number): Promise<void> => {
         try {
-            const isConfirmed: boolean =
-                window.confirm("정말로 삭제하시겠습니까?");
-
-            if (isConfirmed) {
-                const response = await axios.delete(
+            if (window.confirm("정말로 삭제하시겠습니까?")) {
+                const response = await axios.delete<AxiosResponse>(
                     `${BASE_URL}/api/todoList/${todoId}`
                 );
 
