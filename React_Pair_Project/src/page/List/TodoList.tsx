@@ -22,7 +22,9 @@ const TodoList = (): JSX.Element => {
 
     const getTodoList = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/api/todolist`);
+            const response = await axios.get<TodoListResponse>(
+                `${BASE_URL}/api/todolist`
+            );
 
             if (response.status === 200) {
                 const todoListData: TodoItem[] = response.data.items;
@@ -103,11 +105,12 @@ const TodoList = (): JSX.Element => {
                                 <h3
                                     className={
                                         todo.done
-                                            ? `${styles.title} ${styles.checked}`
+                                            ? `${styles.title} 
+            ${styles.checked}`
                                             : styles.title
                                     }
                                     onClick={() =>
-                                        navigate(`/detail${TODO_ID}`)
+                                        navigate(`/detail/${TODO_ID}`)
                                     }
                                 >
                                     {todo.title}

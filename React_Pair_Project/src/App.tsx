@@ -3,7 +3,7 @@ import Footer from "./layout/footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import TodoList from "./page/List/TodoList";
 import TodoRegist from "./page/Regist/TodoRegist";
-import TodoInfo from "./page/TodoInfo";
+import TodoInfo from "./page/Info/TodoInfo";
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<TodoList />} />
                 <Route path="/regist" element={<TodoRegist />} />
-                <Route path="/detail:id" element={<TodoInfo />} />
+                <Route path="detail/:id" element={<TodoInfo />} />
             </Routes>
 
             <Footer />
