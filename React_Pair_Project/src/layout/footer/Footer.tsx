@@ -1,8 +1,8 @@
-import React from "react";
+import styles from "src/layout/footer/Footer.module.css";
 
 const Footer = () => {
     return (
-        <footer>
+        <footer className={styles.footer}>
             <p>FESP 1기 Javascript Project</p>
         </footer>
     );
