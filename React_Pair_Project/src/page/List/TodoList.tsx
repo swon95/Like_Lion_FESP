@@ -16,7 +16,7 @@ interface TodoItem {
 }
 
 const TodoList = (): JSX.Element => {
-    const BASE_URL = "http://localhost:33088";
+    const BASE_URL: string | undefined = process.env.REACT_APP_PORT_NUMBER;
     const [todoList, setTodoList] = useState<TodoItem[]>([]);
     const navigate = useNavigate();
 
@@ -80,6 +80,7 @@ const TodoList = (): JSX.Element => {
 
     useEffect(() => {
         getTodoList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

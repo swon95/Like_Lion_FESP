@@ -22,7 +22,7 @@ interface ContentKey {
 }
 
 const TodoInfo = (): JSX.Element => {
-    const BASE_URL = "http://localhost:33088";
+    const BASE_URL: string | undefined = process.env.REACT_APP_PORT_NUMBER;
 
     const { id } = useParams<string>();
     const navigate = useNavigate();

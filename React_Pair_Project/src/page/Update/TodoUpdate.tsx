@@ -16,7 +16,7 @@ interface TodoItem {
 
 const TodoUpdate = (): JSX.Element => {
     const [todoDetail, setTodoDetail] = useState<TodoItem>();
-    const BASE_URL: string | undefined = "http://localhost:33088";
+    const BASE_URL: string | undefined = process.env.REACT_APP_PORT_NUMBER;
     const navigate = useNavigate();
 
     const { id } = useParams<string>();
