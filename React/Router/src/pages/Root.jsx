@@ -1,16 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+} from "react-router-dom";
+import NavBar from "./../components/NavBar";
 
+// Outlet == index.js 에서 정의한 children 요소가 들어감
 export default function Root() {
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-around",
-      }}
-    >
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-    </nav>
+    <>
+      <NavBar />
+      <Outlet />
+    </>
   );
 }

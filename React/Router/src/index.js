@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import About from "./pages/About";
+import Home from "./pages/Home";
 
 // array in object
 const router = createBrowserRouter([
@@ -18,11 +19,18 @@ const router = createBrowserRouter([
     element: <Root />,
     // 404 경우 -> Error 컴포넌트 렌더링
     errorElement: <ErrorNotFound />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-    errorElement: <ErrorNotFound />,
+    // 중첩
+    children: [
+      {
+        // index: true == '/' (루트)경로 인 경우
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
   },
 ]);
 
