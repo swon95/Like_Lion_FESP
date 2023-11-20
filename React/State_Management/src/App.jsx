@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { Provider } from "jotai";
 import "./App.css";
 import Page from "./components/Page";
 
 function App() {
-    const [isDark, setIsDark] = useState(false);
-    return <Page isDark={isDark} toggleThema={() => setIsDark(!isDark)} />;
+    return (
+        <Provider>
+            <Page />
+        </Provider>
+    );
 }
 
 export default App;
